@@ -9,7 +9,8 @@ package http
 type Server struct {
 
 ```
-Addr           string
+Addr           string //监听的tcp地址
+
 ```
 
 ｝
