@@ -16,15 +16,21 @@ WriteTimeout   time.Duration
 MaxHeaderBytes int ／／请求头最大字节数
 TLSConfig      *tls.Config ／／ ListenAndServeTLS 使用
        // TLSNextProto optionally specifies a function to take over
-	// ownership of the provided TLS connection when an NPN
-	// protocol upgrade has occurred.  The map key is the protocol
-	// name negotiated. The Handler argument should be used to
-	// handle HTTP requests and will initialize the Request's TLS
-	// and RemoteAddr if not already set.  The connection is
-	// automatically closed when the function returns.
-	// If TLSNextProto is nil, HTTP/2 support is enabled automatically.
+    // ownership of the provided TLS connection when an NPN
+    // protocol upgrade has occurred.  The map key is the protocol
+    // name negotiated. The Handler argument should be used to
+    // handle HTTP requests and will initialize the Request's TLS
+    // and RemoteAddr if not already set.  The connection is
+    // automatically closed when the function returns.
+    // If TLSNextProto is nil, HTTP/2 support is enabled automatically.
 TLSNextProto map[string]func(*Server, *tls.Conn, Handler) ／／
+ConnState func(net.Conn, ConnState) ／／当客户端状态变更时会调用的回调函数
+ErrorLog *log.Logger  ／／连接或者未知错误日志
+disableKeepAlives int32
+nextProtoOnce     sync.Once // guards initialization of TLSNextProto in Serve
+nextProtoErr      error
+ ｝
 ```
 
-｝
+
 
