@@ -11,6 +11,9 @@ type Server struct {
 ```
 Addr           string //监听的tcp地址
 Handler        Handler //即将被唤醒的处理函数
+ReadTimeout    time.Duration
+WriteTimeout   time.Duration 
+
 ```
 
 ｝
