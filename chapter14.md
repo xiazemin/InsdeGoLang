@@ -2,41 +2,45 @@
 
 src/net/dial.go
 
+package net
+
 func Listen\(net, laddr string\) \(Listener, error\) {
 
-	addrs, err := resolveAddrList\("listen", net, laddr, noDeadline\)
+```
+addrs, err := resolveAddrList\("listen", net, laddr, noDeadline\)
 
-	if err != nil {
+if err != nil {
 
-		return nil, &OpError{Op: "listen", Net: net, Source: nil, Addr: nil, Err: err}
+    return nil, &OpError{Op: "listen", Net: net, Source: nil, Addr: nil, Err: err}
 
-	}
+}
 
-	var l Listener
+var l Listener
 
-	switch la := addrs.first\(isIPv4\).\(type\) {
+switch la := addrs.first\(isIPv4\).\(type\) {
 
-	case \*TCPAddr:
+case \*TCPAddr:
 
-		l, err = ListenTCP\(net, la\)
+    l, err = ListenTCP\(net, la\)
 
-	case \*UnixAddr:
+case \*UnixAddr:
 
-		l, err = ListenUnix\(net, la\)
+    l, err = ListenUnix\(net, la\)
 
-	default:
+default:
 
-		return nil, &OpError{Op: "listen", Net: net, Source: nil, Addr: la, Err: &AddrError{Err: "unexpected address type", Addr: laddr}}
+    return nil, &OpError{Op: "listen", Net: net, Source: nil, Addr: la, Err: &AddrError{Err: "unexpected address type", Addr: laddr}}
 
-	}
+}
 
-	if err != nil {
+if err != nil {
 
-		return nil, err // l is non-nil interface containing nil pointer
+    return nil, err // l is non-nil interface containing nil pointer
 
-	}
+}
 
-	return l, nil
+return l, nil
+```
 
 }
 
