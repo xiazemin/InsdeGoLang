@@ -6,6 +6,10 @@ package net
 
 在本地地址监听广播
 
+网络必须是基于流式的"tcp", "tcp4", "tcp6", "unix" or "unixpacket"
+
+
+
 func Listen\(net, laddr string\) \(Listener, error\) {
 
 ```
