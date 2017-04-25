@@ -4,6 +4,8 @@ src/net/dial.go
 
 package net
 
+在本地地址监听广播
+
 func Listen\(net, laddr string\) \(Listener, error\) {
 
 ```
@@ -43,6 +45,4 @@ return l, nil
 ```
 
 }
-
-
 
