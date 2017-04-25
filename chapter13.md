@@ -1,2 +1,8 @@
-# chapter13
+# TCPListener
+
+type TCPListener struct {
+
+	fd \*netFD
+
+}
 
